@@ -32,8 +32,9 @@ public class Main {
             System.out.println("3.Sửa thông tin");
             System.out.println("4.Xóa sinh viên");
             System.out.println("5.Hiển thi danh sách sinh viên");
-            System.out.println("6.Tìm kiếm");
-            System.out.println("7.Kết thúc");
+            System.out.println("6.Lọc");
+            System.out.println("7.Tìm kiếm");
+            System.out.println("8.Kết thúc");
             System.out.print("Lựa chọn : ");
             int choose = sn.nextInt();
             sn.nextLine();
@@ -67,11 +68,31 @@ public class Main {
                     showStudents();
                     break;
                 case 6:
-                    findStudents();
+                    System.out.println("1 . Đại học ");
+                    System.out.println("2 . Cao đẳng ");
+                    System.out.print("Lựa chọn : ");
+                    int x = sn.nextInt();
+                    sn.nextLine();
+                    while (x != 1 && x != 2) {
+                        System.out.print("Nhập lại :");
+                        i = sn.nextInt();
+                        sn.nextLine();
+                    }
+                    boolean b = (x == 1);
+                    for (Student item : list) {
+                        if (item.isLevel() == b) {
+                            System.out.println(item);
+                        }
+                    }
                     break;
                 case 7:
-                   return;
-                    
+                    System.out.print("Nhập từ khóa : ");
+                    String keySearch = sn.nextLine();
+                    findStudents(keySearch);
+                    break;
+                case 8:
+                    return;
+
             }
         }
     }
@@ -188,9 +209,8 @@ public class Main {
         }
     }
 
-    private static void findStudents() {
-        System.out.print("Nhập từ khóa : ");
-        String keySearch = sn.nextLine();
+    private static void findStudents(String keySearch) {
+
         List<Student> listResult = new ArrayList<Student>();
         String dh = "đại học";
         String cd = "cao đẳng";
